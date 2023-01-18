@@ -44,6 +44,7 @@ const getBooks = async () => {
 
 let cartCount = 0;
 let bookCounter = document.getElementById("book-counter");
+
 const addBooksToCart = (event) => {
   let clickedBook = event.target.closest(
     ".d-flex.col-12.col-sm-6.col-md-4.col-lg-3.mb-4"
@@ -84,6 +85,17 @@ const handleSearchQuery = (e) => {
 const searchTitle = () => {
   let bookTitle = document.querySelectorAll("h5");
   console.log("bookTitle", bookTitle);
+};
+
+const emptyCart = () => {
+  //   console.log(myCartBooks.hasChildNodes());
+  if (myCartBooks.hasChildNodes()) {
+    myCartBooks.innerHTML = "";
+    cartCount = 0;
+    bookCounter.innerHTML = cartCount;
+  } else {
+    alert("Your cart is already empty.");
+  }
 };
 
 window.onload = () => {
