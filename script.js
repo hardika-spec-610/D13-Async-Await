@@ -16,8 +16,8 @@ const getBooks = async () => {
                 <div class="d-flex card-body justify-content-between align-items-center p-3">
                     <span  class="card-text">${book.price}</span>
                     <div class="d-flex">
-                    <a href="#" class="btn btn-secondary px-1 mr-1" >Skip</a>
-                    <a href="#" onclick="addBooksToCart(event)" class="btn btn-primary px-1" style="background-color: purple;border-color:transparent">Add to cart</a>
+                        <button class="btn btn-secondary px-1 mr-1" >Skip</button>
+                        <a href="#" onclick="addBooksToCart(event)" class="btn btn-primary px-1" style="background-color: purple;border-color:transparent">Add to cart</a>
                     </div>
               </div>
             </div> 
@@ -26,7 +26,7 @@ const getBooks = async () => {
 
     const stringOfBooks = arrayOfBooks.join("");
     // console.log(stringOfBooks);
-    row.innerHTML = arrayOfBooks;
+    row.innerHTML = stringOfBooks;
     row
       .querySelectorAll(".btn.btn-secondary") // finds the second button of type outline-secondary
       .forEach((btn) => {
@@ -43,7 +43,7 @@ const getBooks = async () => {
 };
 
 let cartCount = 0;
-
+let bookCounter = document.getElementById("book-counter");
 const addBooksToCart = (event) => {
   let clickedBook = event.target.closest(
     ".d-flex.col-12.col-sm-6.col-md-4.col-lg-3.mb-4"
@@ -51,14 +51,39 @@ const addBooksToCart = (event) => {
   //   console.log(clickedBook);
   let myCartBooks = document.getElementById("myCartBooks");
   myCartBooks.innerHTML += `<div class="d-flex col-12 col-sm-6 col-md-4 col-lg-3 mb-4">${clickedBook}</div>`;
-  //   console.log(myCartBooks);;
+  //   console.log(myCartBooks);
   event.preventDefault();
   event.currentTarget
     .closest(".d-flex.col-12.col-sm-6.col-md-4.col-lg-3.mb-4")
     .remove();
+  myCartBooks.querySelectorAll(".btn.btn-secondary").forEach((btn) => {
+    btn.innerText = "Delete";
+    btn.classList.add("btn-danger");
+    btn.onclick = (event) => {
+      event.preventDefault();
+      event.currentTarget
+        .closest(".d-flex.col-12.col-sm-6.col-md-4.col-lg-3.mb-4")
+        .remove();
+      cartCount--;
+      bookCounter.innerHTML = cartCount;
+    };
+  });
   cartCount += 1;
-  let bookCounter = document.getElementById("book-counter");
   bookCounter.innerHTML = cartCount;
+  //   let counter = myCartBooks.reduce((cartCount, currentElementOfBook) => {
+  //     return cartCount + currentElementOfBook;
+  //   }, 0);
+  //   console.log(counter);
+};
+
+let searchQuery;
+
+const handleSearchQuery = (e) => {
+  searchQuery = e.target.value.toLowerCase();
+};
+const searchTitle = () => {
+  let bookTitle = document.querySelectorAll("h5");
+  console.log("bookTitle", bookTitle);
 };
 
 window.onload = () => {

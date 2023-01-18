@@ -71,14 +71,21 @@
           This is a modified jumbotron that occupies the entire horizontal space
           of its parent.
         </p>
-        <div class="d-flex mr-3">
+        <div class="input-group">
           <input
-            class="form-control mr-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
+            type="text"
+            class="form-control"
+            oninput="handleSearchQuery(event)"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              onclick="searchTitle()"
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
     </div>
