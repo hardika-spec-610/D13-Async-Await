@@ -3,6 +3,7 @@ window.onload = () => {
 };
 
 const row = document.getElementById("myBooks");
+let myCartBooks = document.getElementById("myCartBooks");
 let arrayOfBooks;
 let outerBooks = [];
 let filteredBooks = [];
@@ -62,8 +63,8 @@ const addBooksToCart = (event) => {
     ".d-flex.col-12.col-sm-6.col-md-4.col-lg-3.mb-4"
   ).innerHTML;
   //   console.log(clickedBook);
-  let myCartBooks = document.getElementById("myCartBooks");
   myCartBooks.innerHTML += `<div class="d-flex col-12 col-sm-6 col-md-4 col-lg-3 mb-4">${clickedBook}</div>`;
+
   //   console.log(myCartBooks);
   event.preventDefault();
   event.currentTarget
@@ -81,6 +82,9 @@ const addBooksToCart = (event) => {
       bookCounter.innerHTML = cartCount;
     };
   });
+  myCartBooks
+    .querySelectorAll(".btn.btn-primary.px-1")
+    .forEach((btn) => (btn.style.display = "none"));
   cartCount += 1;
   bookCounter.innerHTML = cartCount;
   //   let counter = myCartBooks.reduce((cartCount, currentElementOfBook) => {
@@ -88,6 +92,8 @@ const addBooksToCart = (event) => {
   //   }, 0);
   //   console.log(counter);
 };
+
+const countTheBookInCart = () => {};
 
 let searchQuery;
 
