@@ -75,9 +75,10 @@
           <input
             type="text"
             class="form-control"
-            oninput="handleSearchQuery(event)"
+            oninput="handleSearchQuery(this.value)"
+            placeholder="Search books..."
           />
-          <div class="input-group-append">
+          <!-- <div class="input-group-append">
             <button
               class="btn btn-outline-secondary"
               type="button"
@@ -85,7 +86,7 @@
             >
               Search
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -97,7 +98,7 @@
         <button
           onclick="emptyCart()"
           type="button"
-          class="btn btn-danger py-1 ml-2"
+          class="btn btn-info py-1 ml-2"
         >
           Empty Cart
         </button>
